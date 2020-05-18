@@ -1,0 +1,68 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "p_que",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "p_que_bin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-p_que_bin-Debug-a20bad1447f3d9f9fb34.json",
+					"name" : "p_que_bin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "p_que_lib::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-p_que_lib-Debug-b41d04cd826ececd3a77.json",
+					"name" : "p_que_lib",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "F:/Eigene Dateien/Dokumente/Master/absolvent/codemanufaktur/aufgabe/priority_queue/out/build/x64-Debug",
+		"source" : "F:/Eigene Dateien/Dokumente/Master/absolvent/codemanufaktur/aufgabe/priority_queue"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}
