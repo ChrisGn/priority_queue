@@ -1,6 +1,0 @@
-# ninja log v5
-1	227	611515927	CMakeFiles/p_que_lib.dir/src/schueler.cpp.obj	6478c01ce2afbb0d
-4	234	611515927	CMakeFiles/p_que_lib.dir/src/priorities.cpp.obj	9c63f70622d8e78c
-234	306	611515927	p_que_lib.lib	f04dbd6b83a9643a
-7	672	611515928	CMakeFiles/p_que_bin.dir/src/main.cpp.obj	cb037b4e84be5109
-672	1284	611515928	p_que_bin.exe	11503700a3956073
