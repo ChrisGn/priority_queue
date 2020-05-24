@@ -1,38 +1,30 @@
-//#include "..\include\schueler.h"
-//#include "..\include\schueler.h"
-//#include "..\include\schueler.h"
-/*
-
-
-*/
-
 #include "schueler.h"
-#include <string>
 
-schueler::schueler(int id, std::string name, double cgpa)
+
+schueler::schueler(const int int_id, const std::string str_name, const double d_cgpa)
 {
-    if (name.length() < 2) {
+    if (str_name.length() < 2) {
         throw std::length_error{ "error: string name is too short" };
     }
-    else if (name.length() > 29) {
+    else if (str_name.length() > 29) {
         throw std::length_error{ "error: string name is too long" };
     }
-    else if (cgpa <= 0) {
+    else if (d_cgpa <= 0) {
         throw std::range_error{ "error: double cgpa is negative" };
     }
-    else if (cgpa > 4.0) {
+    else if (d_cgpa > 4.0) {
         throw std::range_error{ "error: double cgpa is bigger than 4.0" };
     }
-    else if (id < 1) {
+    else if (int_id < 1) {
         throw std::range_error{ "error: int id is smaller than 1" };
     }
-    else if (id > pow(10.0,5.0)) {
+    else if (int_id > pow(10.0,5.0)) {
         throw std::range_error{ "error: int id is bigger than 10.0000" };
     }
 
-    int_id = id;
-    str_name = name;
-    d_cgpa = cgpa;
+    this->int_id = int_id;
+    this->str_name = str_name;
+    this->d_cgpa = d_cgpa;
 }
 
 
@@ -57,7 +49,7 @@ double schueler::getCGPA() const
 }
 
 
-bool operator==(const schueler& s1, const schueler& s2)
+bool operator==(const schueler &s1, const schueler &s2)
 {
     if ( (s1.getID() == s2.getID()) && 
         (abs(s1.getCGPA() - s2.getCGPA()) < 0.0001) && 
@@ -68,5 +60,3 @@ bool operator==(const schueler& s1, const schueler& s2)
         return false;
     }
 }
-
-

@@ -9,100 +9,62 @@ Project: priority queue
 #include "priorities.h"
 
 #include <iostream>
-#include <conio.h>
 #include <list>
+#include <string>
 
 int main() {
-    try {
-        schueler mySchueler(5, "b", 2);
-    }
-    catch (std::exception e) {
-        std::cout << e.what() << std::endl;
-    }
-    std::cout << " Hello World" << std::endl;
+    bool b_quit = false;                         //determines when to quit the program
+    std::string str_in;                          //Input String from console
+    std::list<std::string> listStr_events;       //List with events to modify the priority que
+    std::list<schueler> listSchueler_schueler;   //priority que
+    priorities prio_myPrio;                      //Object to handle the priority que
 
-    std::list<std::string> events;
-    std::list<std::string>::iterator iter;
+    while (b_quit == false)
+    {       
+        std::cout << "Please enter an event: \n"
+            "ENTER Name GCPA ID \t -> Example: ENTER John 3.75 50 -> Insert the item to the priority que \n"
+            "SERVED \t\t\t -> Remove the item with the highest prioritie from the que \n"
+            "PRINT \t\t\t -> Print the items of the que \n"
+            "QUIT \t\t\t -> Close the program \n" << std::endl;
+        std::getline(std::cin,str_in);
 
-    iter = events.begin();
-    events.insert(iter, "SERVED");
-    events.insert(iter, "ENTER Peter 4.00 50");
-    iter--;
-    events.insert(iter, "ENTER Hans 3.00 40");
+        int int_idxStrIn = str_in.find_first_of(" ");
 
-    int k = 0;
-    schueler mySchueler1(5, "anton", 2);
-    schueler mySchueler2(5, "anton", 2);
-    if (mySchueler1 == mySchueler2) {
-        k = 10;
-    }
+        std::string str_eventName = str_in.substr(0, int_idxStrIn);
 
+        if ((str_eventName.compare("ENTER") == 0) || str_eventName.compare("SERVED") == 0) {
 
-    std::list<schueler> listOfSchueler_manuel = { schueler(4, "Zorro",4.0),
-                                    schueler(2, "Berta",3.5),
-                                    schueler(3, "Claus",3.0),
-                                    schueler(1,"Anton",1.0)
-    };
-
-
-    std::list<std::string> listOfEvents1 = { "ENTER Anton 1.0 1",
-                                        "ENTER Berta 3.5 2",
-                                        "ENTER Claus 3.0 3",
-                                        "ENTER Zorro 4.0 4",
-        // "SERVED",
-        // "SERVED",
-    };
-
-    priorities myPrio1;
-
-    std::list<schueler> listOfSchueler_generated = myPrio1.processEvents(listOfEvents1);
-
-    std::list<schueler> listOfSchueler = { schueler(22, "Sido",3.8),
-                                        schueler(3, "Lauren",3),
-                                        schueler(43, "Riti",1),
-                                        schueler(30,"Angel",1.5),
-                                        schueler(2, "Laura",3.5)
-                                        };
-
-
-    std::list<std::string> listOfEvents = { "ENTER David 3.0 50",
-                                        "ENTER Carl 4.0 49",
-                                        "ENTER Peter 1.0 48",
-                                        "ENTER David 3.0 47",
-                                       // "SERVED",
-                                       // "SERVED",
-    };
-
-    priorities myPrio;
-    listOfSchueler = myPrio.processEvents(listOfEvents);
-
-
-    schueler newSchueler(2, "Lauren", 3);
-
-    //Create an iterator of std::list
-    std::list<schueler>::iterator it;
-    // Make iterate point to begining and incerement it one by one till it reaches the end of list.
-    for (it = listOfSchueler.begin(); it != listOfSchueler.end(); it++)
-    {
-        if (abs(it->getCGPA() - newSchueler.getCGPA() > 0.0001)) {
-            if (it->getCGPA() < newSchueler.getCGPA()) {
-                listOfSchueler.insert(it, newSchueler);
-                break;
+            listStr_events.push_front(str_in);
+            try {
+                listSchueler_schueler = prio_myPrio.processEvents(listStr_events);
+            }
+            catch (std::exception e) {
+                std::cout << e.what() << std::endl;
             }
         }
-        else if (it->getName().compare(newSchueler.getName()) != 0) {
-            if (it->getName().compare(newSchueler.getName()) > 0) {
-                listOfSchueler.insert(it, newSchueler);
-                break;
+
+        else if (str_eventName.compare("PRINT") == 0) {
+
+            if (listSchueler_schueler.size() == 0) {
+                std::cout << "LEER" << std::endl;
+            }
+
+            std::list<schueler>::iterator iter;
+            for (iter = listSchueler_schueler.begin(); iter != listSchueler_schueler.end(); iter++) {
+                std::cout << "Name: " << iter->getName() << " CGPA: " << iter->getCGPA() << " ID: " << iter->getID() << std::endl;
             }
         }
-        else if (it->getID() > newSchueler.getID()) {
-                listOfSchueler.insert(it, newSchueler);
-                break;            
+
+        else if (str_eventName.compare("QUIT") == 0) {
+            b_quit = true;
         }
-    }
 
+        else {
+            std::cout << "error: invalid Event"<< std::endl;
+        }
 
-
-    getch();
+        std::cout << "\n" << std::endl;
+        str_in.clear();
+        listStr_events.clear();
+    }    
 }
