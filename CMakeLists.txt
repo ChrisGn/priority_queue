@@ -1,24 +1,36 @@
 cmake_minimum_required(VERSION 3.16.0)
-project(p_que)
+set(This priority_queue)
 
+project(${This} C CXX)
+
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_POSITION_INDEPENDENT_CODE_ON)
+
+
+enable_testing()
 include_directories(include)
+include_directories(test)
+add_subdirectory(googletest)
 
-# set(SCHUELER_SRCS src/schueler.cpp )
-# set(PRIORITIES_SRCS src/priorities.cpp )
 
 # build library (sources and headers in alphabetical order)
-set(P_QUE_LIB_SOURCES
+set(SOURCES
     src/schueler.cpp
     src/priorities.cpp    
     )
-set(P_QUE_LIB_HEADERS
+set(HEADERS
     include/schueler.h
     include/priorities.h  
     )
 
-add_library(${PROJECT_NAME}_lib ${P_QUE_LIB_SOURCES} ${P_QUE_LIB_HEADERS})
+add_library(${This}_lib STATIC ${SOURCES} ${HEADERS})
+
+add_subdirectory(test)
+
 
 set(MAIN_SRCS src/main.cpp)
-add_executable(${PROJECT_NAME}_bin ${MAIN_SRCS})
+add_executable(${This}_bin ${MAIN_SRCS})
 
-target_link_libraries(${PROJECT_NAME}_bin ${PROJECT_NAME}_lib)
+
+target_link_libraries(${This}_bin ${This}_lib)
